@@ -1,0 +1,60 @@
+.meal-catalog-background {
+  background-image: url('../assets/background\ catalogue\ du\ repas.png'); /* Remplacez par le chemin de votre image */
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh; /* S'étend sur toute la hauteur de l'écran */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.meal-catalog-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Couleur de fond légèrement transparente */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.meal-list {
+  list-style: none;
+  padding: 0;
+}
+
+.meal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.meal-image {
+  width: 60px; /* Ajustez la taille des images des repas */
+  height: 60px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.meal-details {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.order-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.order-button:hover {
+  background-color: #0056b3;
+}
