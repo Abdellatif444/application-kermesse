@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './ConfirmationPage.css';
-import jsPDF from 'jspdf';
-import logo from '../assets/club.png'; // Importer votre logo
+import React, { useState } from "react";
+import "./ConfirmationPage.css";
+import jsPDF from "jspdf";
+import logo from "../assets/club.png"; // Importer votre logo
 
 const ConfirmationPage = ({ order, onConfirm }) => {
-  const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const [pdfUrl, setPdfUrl] = useState(null);
 
   // Gestion de la confirmation et de l'envoi de PDF via WhatsApp
@@ -18,22 +18,26 @@ const ConfirmationPage = ({ order, onConfirm }) => {
 
     // Ajouter l'image du logo dans le PDF
     const imgData = logo; // Utilisez l'image importée
-    doc.addImage(imgData, 'PNG', 85, 10, 40, 20); // Positionner le logo dans le PDF
+    doc.addImage(imgData, "PNG", 85, 10, 40, 40); // Positionner le logo dans le PDF
 
     // Ajouter le texte en arabe
     doc.setFontSize(16);
-    doc.text('حلويات الطاوسي', 105, 40, { align: 'center' });
-    doc.text('ويدعون إلى الخير', 105, 150, { align: 'center' });
+    doc.text("La cuisine du social:", 105, 60, { align: "center" });
+    doc.text("# kindness defines us", 105, 150, { align: "center" });
 
     // Centrer et ajouter les informations de la commande
     doc.setFontSize(12);
-    doc.text(`Nom de l'enfant : ${order.name}`, 105, 70, { align: 'center' });
-    doc.text(`Âge de l'enfant : ${order.age}`, 105, 80, { align: 'center' });
-    doc.text(`Préférences alimentaires : ${order.preferences}`, 105, 90, { align: 'center' });
-    doc.text(`Repas choisi : ${order.meal.name}`, 105, 100, { align: 'center' });
+    doc.text(`Nom de l'enfant : ${order.name}`, 105, 80, { align: "center" });
+    doc.text(`Âge de l'enfant : ${order.age}`, 105, 90, { align: "center" });
+    doc.text(`Préférences alimentaires : ${order.preferences}`, 105, 100, {
+      align: "center",
+    });
+    doc.text(`Repas choisi : ${order.meal.name}`, 105, 110, {
+      align: "center",
+    });
 
     // Générer le PDF en tant que fichier Blob
-    const pdfBlob = doc.output('blob');
+    const pdfBlob = doc.output("blob");
     const url = URL.createObjectURL(pdfBlob);
     setPdfUrl(url);
 
@@ -43,8 +47,10 @@ const ConfirmationPage = ({ order, onConfirm }) => {
 
   const sendWhatsAppMessage = (pdfUrl, whatsappNumber) => {
     const message = `Votre commande a été enregistrée. Vous pouvez télécharger le PDF ici : ${pdfUrl}`;
-    const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
-    window.open(whatsappLink, '_blank');
+    const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappLink, "_blank");
   };
 
   return (
@@ -53,10 +59,18 @@ const ConfirmationPage = ({ order, onConfirm }) => {
         <div className="confirmation-content">
           <h1>Confirmation de la commande</h1>
           <div className="order-details">
-            <p><strong>Nom de l'enfant :</strong> {order.name}</p>
-            <p><strong>Âge de l'enfant :</strong> {order.age}</p>
-            <p><strong>Préférences alimentaires :</strong> {order.preferences}</p>
-            <p><strong>Repas choisi :</strong> {order.meal.name}</p>
+            <p>
+              <strong>Nom de l'enfant :</strong> {order.name}
+            </p>
+            <p>
+              <strong>Âge de l'enfant :</strong> {order.age}
+            </p>
+            <p>
+              <strong>Préférences alimentaires :</strong> {order.preferences}
+            </p>
+            <p>
+              <strong>Repas choisi :</strong> {order.meal.name}
+            </p>
           </div>
 
           {/* Champ pour le numéro WhatsApp */}
