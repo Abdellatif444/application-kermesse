@@ -10,7 +10,8 @@ const ConfirmationPage = ({ order, onConfirm }) => {
   // Gestion de la confirmation et de l'envoi de PDF via WhatsApp
   const handleConfirm = () => {
     generateAndSendPDF(order, whatsappNumber);
-    onConfirm(); // Passe à la page de succès
+    // Uncomment below if you want to move to the success page immediately after confirming
+    // onConfirm();
   };
 
   const generateAndSendPDF = (order, whatsappNumber) => {
@@ -29,12 +30,8 @@ const ConfirmationPage = ({ order, onConfirm }) => {
     doc.setFontSize(12);
     doc.text(`Nom de l'enfant : ${order.name}`, 105, 80, { align: "center" });
     doc.text(`Âge de l'enfant : ${order.age}`, 105, 90, { align: "center" });
-    doc.text(`Préférences alimentaires : ${order.preferences}`, 105, 100, {
-      align: "center",
-    });
-    doc.text(`Repas choisi : ${order.meal.name}`, 105, 110, {
-      align: "center",
-    });
+    doc.text(`Préférences alimentaires : ${order.preferences}`, 105, 100, { align: "center" });
+    doc.text(`Repas choisi : ${order.meal.name}`, 105, 110, { align: "center" });
 
     // Générer le PDF en tant que fichier Blob
     const pdfBlob = doc.output("blob");
@@ -47,9 +44,7 @@ const ConfirmationPage = ({ order, onConfirm }) => {
 
   const sendWhatsAppMessage = (pdfUrl, whatsappNumber) => {
     const message = `Votre commande a été enregistrée. Vous pouvez télécharger le PDF ici : ${pdfUrl}`;
-    const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(
-      message
-    )}`;
+    const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
   };
 
@@ -59,18 +54,10 @@ const ConfirmationPage = ({ order, onConfirm }) => {
         <div className="confirmation-content">
           <h1>Confirmation de la commande</h1>
           <div className="order-details">
-            <p>
-              <strong>Nom de l'enfant :</strong> {order.name}
-            </p>
-            <p>
-              <strong>Âge de l'enfant :</strong> {order.age}
-            </p>
-            <p>
-              <strong>Préférences alimentaires :</strong> {order.preferences}
-            </p>
-            <p>
-              <strong>Repas choisi :</strong> {order.meal.name}
-            </p>
+            <p><strong>Nom de l'enfant :</strong> {order.name}</p>
+            <p><strong>Âge de l'enfant :</strong> {order.age}</p>
+            <p><strong>Préférences alimentaires :</strong> {order.preferences}</p>
+            <p><strong>Repas choisi :</strong> {order.meal.name}</p>
           </div>
 
           {/* Champ pour le numéro WhatsApp */}
