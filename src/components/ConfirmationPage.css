@@ -5,7 +5,7 @@
 }
 
 .background-image {
-  background-image: url('../assets/background\ du\ page\ de\ confirmation.png'); /* Remplacez ce chemin par le chemin de votre image */
+  background-image: url('../assets/background du page de confirmation.png'); /* Remplacez ce chemin par le chemin de votre image */
   background-size: cover;
   background-position: center;
   width: 100%;
